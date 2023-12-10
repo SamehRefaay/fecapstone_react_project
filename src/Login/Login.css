@@ -1,0 +1,64 @@
+.login-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid #aaa;
+	width: fit-content;
+	padding: 1rem;
+}
+
+.form-title {
+	text-align: center;
+}
+
+.form-title a {
+	text-decoration: none;
+	color: #2188f6;
+	font-weight: 600;
+}
+
+.form-group {
+	margin-top: 1rem;
+}
+select,
+label,
+input {
+	display: block;
+}
+
+label {
+	font-weight: 600;
+}
+
+input,
+select {
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	width: 18rem;
+	outline: none;
+	border: 1px solid #aaa;
+	border-radius: 0.3rem;
+}
+
+.btn-group {
+	margin-top: 2rem;
+}
+
+.btn-group button {
+	padding: 0.6rem 1rem;
+	width: 49%;
+	color: white;
+	background-color: #2188f6;
+	border-radius: 0.3rem;
+	border: none;
+}
+
+.btn-group button:last-child {
+	background-color: #f62154;
+}
+
+.form-text {
+	margin-top: 2rem;
+	text-align: center;
+}
