@@ -1,15 +1,44 @@
+/* component */
+.container {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* small screens */
+@media (min-width: 768px) {
+	.container {
+		width: 720px;
+	}
+}
+/* medium screens */
+@media (min-width: 992px) {
+	.container {
+		width: 960px;
+	}
+}
+/* large screens */
+@media (min-width: 1200px) {
+	.container {
+		width: 1140px;
+	}
+}
+
 /** Header - Navbar */
 nav {
-	padding: 1.5rem;
 	position: fixed;
+	left: 0%;
 	top: 0%;
-	left: 50%;
-	transform: translateX(-50%);
 	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	background-color: #fff;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+}
+
+nav .container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .dropdown-menu {
 	position: absolute;
@@ -69,7 +98,7 @@ nav {
 	list-style: none;
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: 5px;
 	font-size: 1rem;
 	font-weight: 500;
 }
@@ -133,8 +162,9 @@ nav {
 .btn1 {
 	border: 2px solid #3685fb;
 	background-color: white;
+	padding: 0.5rem 1rem;
 	color: black;
-	border-radius: 50px;
+	border-radius: 30px;
 }
 
 .btn1:hover {
