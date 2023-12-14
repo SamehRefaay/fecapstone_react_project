@@ -7,10 +7,10 @@ const Navbar = () => {
 	const [userName, setUserName] = useState('');
 
 	useEffect(() => {
-		const storedUsername = sessionStorage.getItem('email').split('@')[0];
+		const storedUsername = sessionStorage.getItem('email');
 		if (storedUsername) {
 			setIsLoggedIn(true);
-			setUserName(storedUsername);
+			setUserName(storedUsername.split('@')[0]);
 		}
 	}, []);
 
