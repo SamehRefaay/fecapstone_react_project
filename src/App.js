@@ -12,7 +12,7 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" Component={Landing_Page} />
-					<Route path="/sign_up" Component={Sign_Up} />
+					<Route path="/signup" Component={Sign_Up} />
 					<Route path="/login" Component={Login} />
 				</Routes>
 			</BrowserRouter>

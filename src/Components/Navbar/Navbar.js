@@ -1,7 +1,32 @@
-import React from 'react';
+import { useState, useEffect, React } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [userName, setUserName] = useState('');
+
+	useEffect(() => {
+		const storedUsername = sessionStorage.getItem('email').split('@')[0];
+		if (storedUsername) {
+			setIsLoggedIn(true);
+			setUserName(storedUsername);
+		}
+	}, []);
+
+	const handleLogout = () => {
+		// sessionStorage.removeItem('auth-token');
+		// sessionStorage.removeItem('name');
+		// sessionStorage.removeItem('email');
+		// sessionStorage.removeItem('phone');
+		console.log('logout');
+		sessionStorage.clear();
+
+		setIsLoggedIn(false);
+		setUserName('');
+		window.location.reload();
+	};
+
 	return (
 		<>
 			<nav>
@@ -33,27 +58,42 @@ const Navbar = () => {
 					</div>
 					<ul className="nav__links active">
 						<li className="link">
-							<a href="../Landing_Page/LandingPage.html">Home</a>
+							<Link to="/">Home</Link>
 						</li>
 						<li className="link">
-							<a href="#">Appointment</a>
+							<Link to="#">Appointment</Link>
 						</li>
 						<li className="link">
-							<a href="#">Health Blog</a>
+							<Link to="#">Health Blog</Link>
 						</li>
 						<li className="link">
-							<a href="#">Reviews</a>
+							<Link to="#">Reviews</Link>
 						</li>
-						<li className="link">
-							<a href="/sign_up">
-								<button className="btn1">Sign Up</button>
-							</a>
-						</li>
-						<li className="link">
-							<a href="/login">
-								<button className="btn1">Login</button>
-							</a>
-						</li>
+						{isLoggedIn ? (
+							<>
+								<p>
+									Welcome, <span>{userName}</span>
+								</p>
+								<li className="link">
+									<button onClick={handleLogout} className="btn1">
+										Logout
+									</button>
+								</li>
+							</>
+						) : (
+							<>
+								<li className="link">
+									<Link to="/signup">
+										<button className="btn1">Sign Up</button>
+									</Link>
+								</li>
+								<li className="link">
+									<Link to="/login">
+										<button className="btn1">Login</button>
+									</Link>
+								</li>
+							</>
+						)}
 					</ul>
 				</div>
 			</nav>

@@ -8,6 +8,8 @@ import {
 	faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { API_URL } from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,24}$/;
 const PHONE_REGEX = /\d/g;
@@ -17,6 +19,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const Sign_Up = () => {
 	const roleRef = useRef();
 	const errRef = useRef();
+	const navigate = useNavigate();
 
 	const [role, setRole] = useState('');
 	const [validRole, setValidRole] = useState(false);
@@ -74,7 +77,7 @@ const Sign_Up = () => {
 		setErrMsg('');
 	}, [role, user, phone, email, pwd]);
 
-	const handleSubmit = async e => {
+	const register = async e => {
 		e.preventDefault();
 		//if button enabled with JS hack
 		const v1 = role !== '0';
@@ -83,11 +86,48 @@ const Sign_Up = () => {
 		const v4 = PHONE_REGEX.test(phone);
 		const v5 = PWD_REGEX.test(pwd);
 		if (!v1 || !v2 || !v3 || !v4 || !v5) {
-			setErrMsg('Invalid Entry');
+			// setErrMsg('Invalid Entry');
 			console.log(v1, v2, v3, v4, v5);
 			return;
 		} else {
-			setSuccess(true);
+			// API Call
+			const response = await fetch(`${API_URL}/api/auth/register`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					name: user,
+					email: email,
+					password: pwd,
+					phone: phone,
+				}),
+			});
+
+			const json = await response.json();
+
+			if (json.authtoken) {
+				sessionStorage.setItem('auth-token', json.authtoken);
+				sessionStorage.setItem('role', role);
+				sessionStorage.setItem('name', user);
+
+				// phone and email
+				sessionStorage.setItem('phone', phone);
+				sessionStorage.setItem('email', email);
+				// Redirect to home page
+				navigate('/'); //on directing to home page you need to give logic to change login and signup buttons with name of the user and logout button where you have implemented Navbar functionality
+				window.location.reload();
+
+				// setSuccess(true);
+			} else {
+				if (json.errors) {
+					for (const error of json.errors) {
+						setErrMsg(error.msg);
+					}
+				} else {
+					setErrMsg(json.error);
+				}
+			}
 		}
 	};
 
@@ -125,7 +165,7 @@ const Sign_Up = () => {
 							</span>
 						</p>
 					</div>
-					<form onSubmit={handleSubmit}>
+					<form method="POST" onSubmit={register}>
 						{/* Role */}
 						<div class="form-group">
 							<label for="role">

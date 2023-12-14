@@ -10,7 +10,7 @@ const Login = () => {
 					<p>
 						Are you a new member?
 						<span>
-							<a href="/sign_up">Sign Up Here</a>
+							<a href="/signup">Sign Up Here</a>
 						</span>
 					</p>
 				</div>
@@ -26,7 +26,7 @@ const Login = () => {
 						/>
 					</div>
 					<div class="form-group">
-						<label for="name">Password</label>
+						<label htmlFor="password">Password</label>
 						<input
 							id="password"
 							type="password"
