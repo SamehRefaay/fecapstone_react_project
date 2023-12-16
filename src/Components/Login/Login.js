@@ -71,61 +71,65 @@ const Login = () => {
 					<button onClick={reset}>Try Again</button>
 				</section>
 			) : (
-				<seciton class="login-form">
-					<div class="form-title">
-						<p
-							ref={errRef}
-							className={errMsg ? 'errMsg' : 'offscreen'}
-							aria-live="assertive"
-						>
-							{errMsg}
-						</p>
-						<h2>Login</h2>
-						<p>
-							Are you a new member?
-							<span>
-								<a href="/signup">Sign Up Here</a>
-							</span>
-						</p>
+				<section>
+					<div className="container">
+						<div class="login-form">
+							<div class="form-title">
+								<p
+									ref={errRef}
+									className={errMsg ? 'errMsg' : 'offscreen'}
+									aria-live="assertive"
+								>
+									{errMsg}
+								</p>
+								<h2>Login</h2>
+								<p>
+									Are you a new member?
+									<span>
+										<a href="/signup">Sign Up Here</a>
+									</span>
+								</p>
+							</div>
+							<form onSubmit={login} onReset={reset}>
+								<div class="form-group">
+									<label htmlFor="email">Email</label>
+									<input
+										id="email"
+										name="email"
+										type="email"
+										value={email}
+										ref={emailRef}
+										required
+										onChange={e => setEmail(e.target.value)}
+										className="form-control"
+										autoComplete="off"
+										placeholder="Enter your email"
+									/>
+								</div>
+								<div class="form-group">
+									<label htmlFor="password">Password</label>
+									<input
+										id="password"
+										name="password"
+										type="password"
+										value={pwd}
+										required
+										className="form-control"
+										onChange={e => setPwd(e.target.value)}
+										placeholder="Enter your password"
+									/>
+								</div>
+								<div class="btn-group">
+									<button type="submit">Submit</button>
+									<button type="reset">Reset</button>
+								</div>
+								<div class="form-text">
+									<Link to="#">Forget Password?</Link>
+								</div>
+							</form>
+						</div>
 					</div>
-					<form onSubmit={login} onReset={reset}>
-						<div class="form-group">
-							<label htmlFor="email">Email</label>
-							<input
-								id="email"
-								name="email"
-								type="email"
-								value={email}
-								ref={emailRef}
-								required
-								onChange={e => setEmail(e.target.value)}
-								className="form-control"
-								autoComplete="off"
-								placeholder="Enter your email"
-							/>
-						</div>
-						<div class="form-group">
-							<label htmlFor="password">Password</label>
-							<input
-								id="password"
-								name="password"
-								type="password"
-								value={pwd}
-								required
-								className="form-control"
-								onChange={e => setPwd(e.target.value)}
-								placeholder="Enter your password"
-							/>
-						</div>
-						<div class="btn-group">
-							<button type="submit">Submit</button>
-							<button type="reset">Reset</button>
-						</div>
-						<div class="form-text">
-							<Link to="#">Forget Password?</Link>
-						</div>
-					</form>
-				</seciton>
+				</section>
 			)}
 		</>
 	);

@@ -1,10 +1,11 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
-import Landing_Page from './Components/Landing_Page/Landing_Page';
-import Sign_Up from './Components/Sign_Up/Sign_Up';
+import LandingPage from './Components/Landing_Page/LandingPage';
+import SignUp from './Components/Sign_Up/SignUp';
 import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
+import BestServices from './Components/Best_Services/BestServices';
 
 function App() {
 	return (
@@ -12,13 +13,14 @@ function App() {
 			<BrowserRouter>
 				<Navbar />
 				<Routes>
-					<Route path="/" element={<Landing_Page />} />
-					<Route path="/signup" element={<Sign_Up />} />
+					<Route path="/" element={<LandingPage />} />
+					<Route path="/signup" element={<SignUp />} />
 					<Route path="/login" element={<Login />} />
 					<Route
 						path="/instant-consultation"
 						element={<InstantConsultation />}
 					/>
+					<Route path="/best-services" element={<BestServices />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

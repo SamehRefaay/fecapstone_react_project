@@ -1,5 +1,5 @@
 import React from 'react';
-import './Sign_Up.css';
+import './SignUp.css';
 import { useRef, useState, useEffect } from 'react';
 import {
 	faCheck,

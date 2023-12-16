@@ -58,10 +58,10 @@ const Navbar = () => {
 					</div>
 					<ul className="nav__links active">
 						<li className="link">
-							<Link to="/">Home</Link>
+							<Link to="/best-services">Home</Link>
 						</li>
 						<li className="link">
-							<Link to="instant-consultation">Appointment</Link>
+							<Link to="">Appointment</Link>
 						</li>
 						<li className="link">
 							<Link to="#">Health Blog</Link>

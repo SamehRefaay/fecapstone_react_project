@@ -1,7 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 
-const Landing_Page = () => {
+const LandingPage = () => {
 	return (
 		<>
 			<section class="hero-section">
@@ -22,7 +22,7 @@ const Landing_Page = () => {
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque at
 							quae ducimus. Suscipit omnis quibusdam non cum rem voluptatem!
 						</h4>
-						<a href="#services">
+						<a href="/best-services">
 							<button class="button">Get Started</button>
 						</a>
 					</div>
@@ -32,4 +32,4 @@ const Landing_Page = () => {
 	);
 };
 
-export default Landing_Page;
+export default LandingPage;
