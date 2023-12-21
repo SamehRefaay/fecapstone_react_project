@@ -1,0 +1,127 @@
+section.sign_up_form {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	background-color: #ddd;
+	border: 1px solid #eee;
+	width: fit-content;
+	padding: 1rem;
+}
+
+section.flash-screen {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 2rem;
+	background-color: white;
+	border-radius: 25px;
+	box-shadow: 1px 1px 3px #333;
+}
+
+section button {
+	margin-top: 2rem;
+	width: fit-content;
+	padding: 0.5rem 2rem;
+	border-radius: 30px;
+	color: white;
+	background-color: #2188f6;
+	border: none;
+}
+
+section button a {
+	color: white;
+}
+
+.form-title {
+	text-align: center;
+}
+
+.form-title a {
+	text-decoration: none;
+	color: #2188f6;
+	font-weight: 600;
+}
+
+.form-group {
+	margin-top: 0.5rem;
+}
+select,
+label,
+input {
+	display: block;
+}
+
+select:focus,
+input:focus {
+	border: 1px solid #2188f6;
+}
+
+label {
+	text-align: left;
+	font-weight: 600;
+}
+
+label span {
+	margin-left: 0.5rem;
+}
+
+input,
+select {
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	width: 300px;
+	outline: none;
+	border: 1px solid #aaa;
+	border-radius: 0.3rem;
+}
+
+/* .no-spinners {
+	-moz-appearance: textfield;
+} */
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.btn-group {
+	margin-top: 1rem;
+}
+
+.btn-group button {
+	padding: 0.6rem 1rem;
+	width: 100%;
+	color: white;
+	background-color: #2188f6;
+	border-radius: 0.3rem;
+	border: none;
+}
+.btn-group button:disabled {
+	color: #bbb;
+	background-color: rgba(33, 136, 246, 0.6);
+}
+
+.btn-group button:last-child {
+	background-color: #f62154;
+}
+
+.instructions {
+	text-align: left;
+	background-color: #333;
+	color: white;
+	font-size: 12px;
+	margin-top: 0.5rem;
+	padding: 5px;
+}
+
+.hide {
+	display: none;
+}
+
+.offscreen {
+	position: absolute;
+	left: -1000px;
+	top: -1000px;
+}
