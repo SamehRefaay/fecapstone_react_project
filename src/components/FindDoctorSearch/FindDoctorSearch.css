@@ -1,0 +1,65 @@
+.find-doctor {
+	padding-top: 80px;
+}
+.find-doctor h3 {
+	color: var(--text-dark);
+}
+.find-doctor .container {
+	padding-top: 20px;
+}
+.find-doctor img {
+	margin-top: 20px;
+	height: 250px;
+}
+.search-container {
+	width: 50%;
+	min-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media (max-width: 687px) {
+	.search-container {
+		width: 100%;
+		margin: 0;
+	}
+}
+.search-bar {
+	display: flex;
+	align-items: center;
+}
+.search-container input {
+	border: 1px solid #999;
+	color: var(--text-light);
+	height: 50px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.search-container button {
+	width: fit-content;
+	height: 50px;
+	margin: 0;
+	background-color: #777;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.search-container button:hover {
+	background-color: var(--primary-color);
+}
+.suggested-list {
+	margin-top: 10px;
+	background-color: #f9f9f9;
+}
+.suggested-list-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	color: var(--text-light);
+	border-bottom: 1px solid #ccc;
+}
+.suggested-list-item:hover {
+	background-color: #eee;
+}
