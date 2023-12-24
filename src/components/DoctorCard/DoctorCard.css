@@ -20,12 +20,21 @@
 .doctor-card-profile-image-container {
 	width: 124px;
 	height: auto;
-	/* background-color: red; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: red;
+}
+
+.doctor-info .doctor-card-profile-image-container {
+	width: 100px;
+	border-right: 2px solid #eee;
 }
 
 .doctor-card-profile-image-container img {
 	width: 100%;
 	object-fit: cover;
+	display: block;
 }
 
 .doctor-card-details {
@@ -147,19 +156,19 @@
 }
 
 .form-group {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 label {
 	display: block;
 	font-weight: bold;
-	margin-bottom: 8px;
+	margin-bottom: 5px;
 }
 
 input,
 textarea {
 	width: 100%;
-	padding: 12px;
+	padding: 8px 10px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	font-size: 16px;
