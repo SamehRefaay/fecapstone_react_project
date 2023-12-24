@@ -8,6 +8,7 @@ import InstantConsultation from './components/InstantConsultationBooking/Instant
 import BestServices from './components/Best_Services/BestServices';
 import AuthProvider from './context/AuthProvider';
 import RequireAuth from './components/RequireAuth';
+import AppointmentBooking from './components/AppointmentBooking/AppointmentBooking';
 
 function App() {
 	return (
@@ -26,6 +27,10 @@ function App() {
 									<InstantConsultation />
 								</RequireAuth>
 							}
+						/>
+						<Route
+							path="appointment-booking"
+							element={<AppointmentBooking />}
 						/>
 						<Route path="/best-services" element={<BestServices />} />
 					</Routes>
