@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
 	const [name, setName] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
-	const [startDate, setStartDate] = useState();
+	const [startDate, setStartDate] = useState(new Date());
 	const [selectedSlot, setSelectedSlot] = useState('10:00 AM');
 
 	const handleSlotSelection = e => {

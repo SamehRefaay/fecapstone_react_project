@@ -27,11 +27,6 @@ const FindDoctorSearch = () => {
 	};
 	const handleOnChange = e => {
 		setSearchDoctor(e.target.value);
-		// implement instant filter search
-		// const matchedSpeciality = initSpeciality.filter(speciality =>
-		// 	speciality.toLowerCase().includes(searchDoctor.toLowerCase())
-		// );
-		// setSpecialities(matchedSpeciality);
 	};
 	return (
 		<div className="find-doctor">
