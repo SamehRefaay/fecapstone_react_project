@@ -6,7 +6,6 @@ import SignUp from './components/Sign_Up/SignUp';
 import Login from './components/Login/Login';
 import InstantConsultation from './components/InstantConsultationBooking/InstantConsultation';
 import BestServices from './components/Best_Services/BestServices';
-import AuthProvider from './context/AuthProvider';
 import RequireAuth from './components/RequireAuth';
 import AppointmentBooking from './components/AppointmentBooking/AppointmentBooking';
 import Notification from './components/Notification/Notification';
@@ -15,32 +14,30 @@ function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<AuthProvider>
-					<Navbar />
-					<Notification />
-					<Routes>
-						<Route path="/" element={<LandingPage />} />
-						<Route path="/signup" element={<SignUp />} />
-						<Route path="/login" element={<Login />} />
-						<Route
-							path="/instant-consultation"
-							element={
-								<RequireAuth>
-									<InstantConsultation />
-								</RequireAuth>
-							}
-						/>
-						<Route
-							path="appointment-booking"
-							element={
-								<RequireAuth>
-									<AppointmentBooking />
-								</RequireAuth>
-							}
-						/>
-						<Route path="/best-services" element={<BestServices />} />
-					</Routes>
-				</AuthProvider>
+				<Navbar />
+				<Notification />
+				<Routes>
+					<Route path="/" element={<LandingPage />} />
+					<Route path="/signup" element={<SignUp />} />
+					<Route path="/login" element={<Login />} />
+					<Route
+						path="/instant-consultation"
+						element={
+							<RequireAuth>
+								<InstantConsultation />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="appointment-booking"
+						element={
+							<RequireAuth>
+								<AppointmentBooking />
+							</RequireAuth>
+						}
+					/>
+					<Route path="/best-services" element={<BestServices />} />
+				</Routes>
 			</BrowserRouter>
 		</div>
 	);
