@@ -1,0 +1,11 @@
+.notification-container {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: fit-content;
+	padding: 10px 20px;
+	border-radius: 10px;
+	color: #fff;
+	text-align: left;
+	background-color: var(--primary-color);
+}

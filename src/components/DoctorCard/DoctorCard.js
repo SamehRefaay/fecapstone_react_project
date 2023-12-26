@@ -27,6 +27,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 			appointment => appointment.id !== appointmentId
 		);
 		setAppointments(updatedAppointments);
+		localStorage.getItem('doctorDate');
 	};
 
 	const handleFormSubmit = appointmentData => {
@@ -124,15 +125,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 									<div className="doctor-card-profile-image-container">
 										<img src={getDoctorImage(name)} alt="doctor" />
 									</div>
-									{/* <div
-										style={{
-											height: '130px',
-											width: '1px',
-											backgroundColor: '#ddd',
-										}}
-									>
-										{' '}
-									</div> */}
 									<div className="doctor-card-details">
 										<div className="doctor-card-detail-name">{name}</div>
 										<div className="doctor-card-detail-speciality">

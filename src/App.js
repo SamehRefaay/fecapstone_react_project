@@ -9,6 +9,7 @@ import BestServices from './components/Best_Services/BestServices';
 import AuthProvider from './context/AuthProvider';
 import RequireAuth from './components/RequireAuth';
 import AppointmentBooking from './components/AppointmentBooking/AppointmentBooking';
+import Notification from './components/Notification/Notification';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 			<BrowserRouter>
 				<AuthProvider>
 					<Navbar />
+					<Notification />
 					<Routes>
 						<Route path="/" element={<LandingPage />} />
 						<Route path="/signup" element={<SignUp />} />
@@ -30,7 +32,11 @@ function App() {
 						/>
 						<Route
 							path="appointment-booking"
-							element={<AppointmentBooking />}
+							element={
+								<RequireAuth>
+									<AppointmentBooking />
+								</RequireAuth>
+							}
 						/>
 						<Route path="/best-services" element={<BestServices />} />
 					</Routes>
