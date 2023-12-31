@@ -70,7 +70,7 @@ const Navbar = () => {
 							<Link to="#">Health Blog</Link>
 						</li>
 						<li className="link">
-							<Link to="#">Reviews</Link>
+							<Link to="/reviews">Reviews</Link>
 						</li>
 						{isLoggedIn ? (
 							<>

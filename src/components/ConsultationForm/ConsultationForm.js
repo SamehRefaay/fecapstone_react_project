@@ -53,9 +53,25 @@ const ConsultationForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
 					JSON.stringify({ ...data, consultation: consultationData })
 				);
 			} else {
-				localStorage.setItem(
+				window.localStorage.setItem(
 					doctorName,
 					JSON.stringify({ consultation: consultationData })
+				);
+			}
+
+			const consultationList = JSON.parse(
+				window.localStorage.getItem('consultation-list')
+			);
+
+			if (consultationList) {
+				window.localStorage.setItem(
+					'consultation-list',
+					JSON.stringify([...consultationList, doctorData])
+				);
+			} else {
+				window.localStorage.setItem(
+					'consultation-list',
+					JSON.stringify([doctorData])
 				);
 			}
 

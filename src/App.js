@@ -9,6 +9,7 @@ import BestServices from './components/Best_Services/BestServices';
 import RequireAuth from './components/RequireAuth';
 import AppointmentBooking from './components/AppointmentBooking/AppointmentBooking';
 import Notification from './components/Notification/Notification';
+import ReviewForm from './components/ReviewForm/ReviewForm';
 
 function App() {
 	return (
@@ -37,6 +38,7 @@ function App() {
 						}
 					/>
 					<Route path="/best-services" element={<BestServices />} />
+					<Route path="/reviews" element={<ReviewForm />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

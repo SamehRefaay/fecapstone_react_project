@@ -67,6 +67,27 @@ const DoctorCard = ({
 			removeEmptyObj(data);
 			setHasBooked(false);
 		}
+		const consultationList = JSON.parse(
+			window.localStorage.getItem('consultation-list')
+		);
+
+		const updatedConsultationList = consultationList.filter(
+			item => item.name !== name
+		);
+		window.localStorage.setItem(
+			'consultation-list',
+			JSON.stringify(updatedConsultationList)
+		);
+		removeEmptyArray();
+	};
+
+	const removeEmptyArray = () => {
+		const consultationList = JSON.parse(
+			window.localStorage.getItem('consultation-list')
+		);
+		if (consultationList.length === 0) {
+			window.localStorage.removeItem('consultation-list');
+		}
 	};
 
 	const removeEmptyObj = data => {
@@ -211,7 +232,11 @@ const DoctorCard = ({
 									<div
 										className="bookedInfo"
 										key={name}
-										style={{ width: '300px', margin: '50px auto' }}
+										style={{
+											width: '300px',
+											margin: '30px auto',
+											textAlign: 'center',
+										}}
 									>
 										<p style={{ marginTop: '20px' }}>
 											Name: {getConsultationData()?.name}

@@ -1,0 +1,26 @@
+.reviews {
+	margin: 100px auto;
+	width: fit-content;
+	text-align: left;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table th {
+	background-color: #eee;
+}
+th,
+td {
+	width: fit-content;
+	padding: 10px;
+}
+tr:not(:first-child) {
+	border-bottom: 1px solid #ddd;
+}
+
+td button {
+	padding: 5px;
+	margin: 0;
+}
