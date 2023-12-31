@@ -57,7 +57,10 @@ const AppointmentBooking = () => {
 
 	return (
 		<>
-			<FindDoctorSearch onSearch={handleSearch} />
+			<FindDoctorSearch
+				onSearch={handleSearch}
+				service={{ type: 'appointment' }}
+			/>
 			<div className="container">
 				<div className="search-results-container">
 					{isSearched ? (
@@ -77,6 +80,7 @@ const AppointmentBooking = () => {
 										className="doctorcard"
 										{...doctor}
 										key={doctor.name}
+										service={{ type: 'appointment' }}
 									/>
 								))
 							) : (

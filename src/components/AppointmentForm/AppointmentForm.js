@@ -71,10 +71,28 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
 				name: doctorName,
 				speciality: doctorSpeciality,
 			};
-			const appointmentData = { name, phoneNumber, startDate, selectedSlot };
+			const appointmentData = {
+				name,
+				phoneNumber,
+				startDate,
+				selectedSlot,
+			};
 
 			localStorage.setItem('doctorData', JSON.stringify(doctorData));
-			localStorage.setItem(doctorName, JSON.stringify(appointmentData));
+
+			const data = JSON.parse(window.localStorage.getItem(doctorName));
+
+			if (data) {
+				window.localStorage.setItem(
+					doctorName,
+					JSON.stringify({ ...data, appointment: appointmentData })
+				);
+			} else {
+				localStorage.setItem(
+					doctorName,
+					JSON.stringify({ appointment: appointmentData })
+				);
+			}
 
 			onSubmit(appointmentData);
 			setName('');

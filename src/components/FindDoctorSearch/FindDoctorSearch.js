@@ -14,7 +14,7 @@ const initSpeciality = [
 	'Ayurveda',
 ];
 
-const FindDoctorSearch = () => {
+const FindDoctorSearch = ({ service }) => {
 	const [doctorResultHidden, setDoctorResultHidden] = useState(true);
 	const [searchDoctor, setSearchDoctor] = useState('');
 	const [specialities, setSpecialities] = useState(initSpeciality);
@@ -22,16 +22,24 @@ const FindDoctorSearch = () => {
 	const handleDoctorSelect = speciality => {
 		setSearchDoctor(speciality);
 		setDoctorResultHidden(true);
-		navigate(`/appointment-booking?speciality=${speciality}`);
+		service.type === 'appointment'
+			? navigate(`/appointment-booking?speciality=${speciality}`)
+			: navigate(`/instant-consultation?speciality=${speciality}`);
+
 		window.location.reload();
 	};
 	const handleOnChange = e => {
 		setSearchDoctor(e.target.value);
 	};
+
 	return (
 		<div className="find-doctor">
 			<div className="container">
-				<h3>Find a doctor at your own ease</h3>
+				{service.type === 'appointment' ? (
+					<h3>Find a doctor at your own ease </h3>
+				) : (
+					<h3>Find a doctor and Consult instantly </h3>
+				)}
 				<img
 					src="https://cdn4.iconfinder.com/data/icons/medical-flat-sticker-icons-part-1/202/Search_Doctor-512.png"
 					alt="search for a doctor"

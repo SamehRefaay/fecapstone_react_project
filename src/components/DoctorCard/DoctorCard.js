@@ -1,33 +1,79 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './DoctorCard.css';
 import AppointmentForm from '../AppointmentForm/AppointmentForm';
 import { v4 as uuidv4 } from 'uuid';
-import male1 from '../../assets/images/male-doctor1.jpeg';
-import male2 from '../../assets/images/male-doctor2.jpeg';
-import male3 from '../../assets/images/male-doctor3.jpeg';
-import male4 from '../../assets/images/male-doctor4.jpeg';
-import female1 from '../../assets/images/female-doctor1.jpeg';
-import female2 from '../../assets/images/female-doctor2.jpeg';
-import female3 from '../../assets/images/female-doctor3.jpeg';
-import female4 from '../../assets/images/female-doctor4.jpeg';
+import { getDoctorImage, getDateFormat } from '../Utils';
+import ConsultationForm from '../ConsultationForm/ConsultationForm';
 
-const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
+const DoctorCard = ({
+	name,
+	speciality,
+	experience,
+	ratings,
+	profilePic,
+	service,
+}) => {
 	const [showModal, setShowModal] = useState(false);
 	const [appointments, setAppointments] = useState([]);
-	const i = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+	const [hasBooked, setHasBooked] = useState(false);
+
+	useEffect(() => {
+		const consultationData = JSON.parse(
+			window.localStorage.getItem(name)
+		)?.consultation;
+		const appointmentData = JSON.parse(
+			window.localStorage.getItem(name)
+		)?.appointment;
+		console.log('consultationData: ', consultationData);
+		console.log('appointmentData: ', appointmentData);
+
+		if (service.type === 'consultation' && consultationData) {
+			setHasBooked(true);
+		}
+
+		if (service.type === 'appointment' && appointmentData) {
+			setHasBooked(true);
+		}
+	}, []);
+
+	const getConsultationData = () => {
+		return JSON.parse(window.localStorage.getItem(name))?.consultation;
+	};
+
+	const getAppointmentData = () => {
+		return JSON.parse(window.localStorage.getItem(name))?.appointment;
+	};
 
 	const handleBooking = () => {
 		setShowModal(true);
 	};
 
-	const handleCancel = appointmentId => {
-		const updatedAppointments = appointments.filter(
-			appointment => appointment.id !== appointmentId
-		);
-		setAppointments(updatedAppointments);
-		localStorage.getItem('doctorDate');
+	const handleCancel = name => {
+		// const updatedAppointments = appointments.filter(
+		// 	appointment => appointment.id !== appointmentId
+		// );
+		// setAppointments(updatedAppointments);
+		const data = JSON.parse(window.localStorage.getItem(name));
+		if (data && service.type === 'appointment') {
+			delete data.appointment;
+			window.localStorage.setItem(name, JSON.stringify(data));
+			removeEmptyObj(data);
+			window.location.reload();
+		} else {
+			delete data.consultation;
+			window.localStorage.setItem(name, JSON.stringify(data));
+			removeEmptyObj(data);
+			setHasBooked(false);
+		}
+	};
+
+	const removeEmptyObj = data => {
+		//check if we have any empty object to remove it from local storage
+		if (Object.keys(data).length === 0) {
+			window.localStorage.removeItem(name);
+		}
 	};
 
 	const handleFormSubmit = appointmentData => {
@@ -38,25 +84,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 		const updatedAppointments = [...appointments, newAppointment];
 		setAppointments(updatedAppointments);
 		setShowModal(false);
-	};
-	//  'jiao'||'jessica'||'sarah'||'stephny'||'Elizabeth'||'Emily'||samantha||rachel
-	const getDoctorImage = name => {
-		var doctorsImages = [];
-		if (
-			name.toLowerCase().includes('jiao') ||
-			name.toLowerCase().includes('jessica') ||
-			name.toLowerCase().includes('sarah') ||
-			name.toLowerCase().includes('stephny') ||
-			name.toLowerCase().includes('elizabeth') ||
-			name.toLowerCase().includes('emily') ||
-			name.toLowerCase().includes('samantha') ||
-			name.toLowerCase().includes('rachel')
-		) {
-			doctorsImages = [female1, female2, female3, female4];
-			return doctorsImages[i];
-		}
-		doctorsImages = [male1, male2, male3, male4];
-		return doctorsImages[i];
 	};
 
 	return (
@@ -75,13 +102,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 						Ratings: {ratings}
 					</div>
 				</div>
-				{/* for reference  */}
-				{/* <div>
-					<button className="book-appointment-btn">
-						<div>Book Appointment</div>
-						<div>No Booking Fee</div>
-					</button>
-				</div> */}
 			</div>
 
 			<div className="doctor-card-options-container">
@@ -90,10 +110,10 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 					trigger={
 						<button
 							className={`book-appointment-btn ${
-								appointments.length > 0 ? 'cancel-appointment' : ''
+								hasBooked ? 'cancel-appointment' : ''
 							}`}
 						>
-							{appointments.length > 0 ? (
+							{hasBooked ? (
 								<div>Cancel Appointment</div>
 							) : (
 								<div>Book Appointment</div>
@@ -113,16 +133,37 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 							<div>
 								<div
 									className="doctor-info"
-									style={{
-										display: 'flex',
-										flex: 'wrap',
-										maxWidth: '400px',
-										margin: '10px auto',
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-									}}
+									style={
+										service.type === 'appointment'
+											? {
+													display: 'flex',
+													flex: 'wrap',
+													maxWidth: '400px',
+													margin: '10px auto',
+													justifyContent: 'space-evenly',
+													alignItems: 'center',
+											  }
+											: {
+													display: 'flex',
+													flexDirection: 'column',
+													flex: 'wrap',
+													gap: '10px',
+													maxWidth: '400px',
+													margin: '10px auto 20px',
+													justifyContent: 'space-evenly',
+													alignItems: 'center',
+											  }
+									}
 								>
-									<div className="doctor-card-profile-image-container">
+									<div
+										className="doctor-card-profile-image-container"
+										style={{
+											borderRight:
+												service.type === 'appointment'
+													? '2px solid #eee'
+													: 'none',
+										}}
+									>
 										<img src={getDoctorImage(name)} alt="doctor" />
 									</div>
 									<div className="doctor-card-details">
@@ -139,42 +180,66 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 									</div>
 								</div>
 							</div>
-
-							{appointments.length > 0 ? (
+							{hasBooked && service.type === 'appointment' ? (
 								<>
 									<h3 style={{ textAlign: 'center' }}>Appointment Booked!</h3>
-									{appointments.map(appointment => {
-										const a = appointment.startDate.toString().split(' ');
-										const date = `${a[0]} ${a[1]} ${a[2]} ${a[3]}`;
-										return (
-											<div
-												className="bookedInfo"
-												key={appointment.id}
-												style={{ width: '300px', margin: '50px auto' }}
-											>
-												<p style={{ marginTop: '20px' }}>
-													Name: {appointment.name}
-												</p>
-												<p style={{ marginTop: '20px' }}>
-													Phone Number: {appointment.phoneNumber}
-												</p>
-												<p style={{ marginTop: '20px' }}>Date: {date}</p>
-												<p style={{ marginTop: '20px' }}>
-													Time: {appointment.selectedSlot}
-												</p>
-												<button onClick={() => handleCancel(appointment.id)}>
-													Cancel Appointment
-												</button>
-											</div>
-										);
-									})}
+									<div
+										className="bookedInfo"
+										key={name}
+										style={{ width: '300px', margin: '50px auto' }}
+									>
+										<p style={{ marginTop: '20px' }}>
+											Name: {getAppointmentData()?.name}
+										</p>
+										<p style={{ marginTop: '20px' }}>
+											Phone Number: {getAppointmentData()?.phoneNumber}
+										</p>
+										<p style={{ marginTop: '20px' }}>
+											Date: {getDateFormat(getAppointmentData()?.startDate)}
+										</p>
+										<p style={{ marginTop: '20px' }}>
+											Time: {getAppointmentData()?.selectedSlot}
+										</p>
+										<button onClick={() => handleCancel(name)}>
+											Cancel Appointment
+										</button>
+									</div>
+								</>
+							) : hasBooked && service.type === 'consultation' ? (
+								<>
+									<h3 style={{ textAlign: 'center' }}>Appointment Booked!</h3>
+									<div
+										className="bookedInfo"
+										key={name}
+										style={{ width: '300px', margin: '50px auto' }}
+									>
+										<p style={{ marginTop: '20px' }}>
+											Name: {getConsultationData()?.name}
+										</p>
+										<p style={{ marginTop: '20px' }}>
+											Phone Number: {getConsultationData()?.phoneNumber}
+										</p>
+										<button onClick={() => handleCancel(name)}>
+											Cancel Appointment
+										</button>
+									</div>
 								</>
 							) : (
-								<AppointmentForm
-									doctorName={name}
-									doctorSpeciality={speciality}
-									onSubmit={handleFormSubmit}
-								/>
+								<>
+									{service.type === 'appointment' ? (
+										<AppointmentForm
+											doctorName={name}
+											doctorSpeciality={speciality}
+											onSubmit={handleFormSubmit}
+										/>
+									) : (
+										<ConsultationForm
+											doctorName={name}
+											doctorSpeciality={speciality}
+											onSubmit={handleFormSubmit}
+										/>
+									)}
+								</>
 							)}
 						</div>
 					)}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
 import './Notification.css';
 
 const Notification = ({ children }) => {
@@ -13,7 +12,7 @@ const Notification = ({ children }) => {
 		const storedDoctorData = JSON.parse(localStorage.getItem('doctorData'));
 		const storedAppointmentData = JSON.parse(
 			localStorage.getItem(storedDoctorData?.name)
-		);
+		)?.appointment;
 
 		if (storedUsername) {
 			console.log(username);

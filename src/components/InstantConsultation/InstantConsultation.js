@@ -52,6 +52,7 @@ const InstantConsultation = () => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		getDoctorsDetails();
+
 		// const authtoken = sessionStorage.getItem("auth-token");
 		// if (!authtoken) {
 		//     navigate("/login");
@@ -59,9 +60,12 @@ const InstantConsultation = () => {
 	}, [searchParams]);
 
 	return (
-		<center>
-			<div className="searchpage-container">
-				<FindDoctorSearch onSearch={handleSearch} />
+		<>
+			<FindDoctorSearch
+				onSearch={handleSearch}
+				service={{ type: 'consultation' }}
+			/>
+			<div className="container">
 				<div className="search-results-container">
 					{isSearched ? (
 						<center>
@@ -79,6 +83,7 @@ const InstantConsultation = () => {
 										className="doctorcard"
 										{...doctor}
 										key={doctor.name}
+										service={{ type: 'consultation' }}
 									/>
 								))
 							) : (
@@ -90,7 +95,7 @@ const InstantConsultation = () => {
 					)}
 				</div>
 			</div>
-		</center>
+		</>
 	);
 };
 

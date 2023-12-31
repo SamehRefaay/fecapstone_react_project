@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/Landing_Page/LandingPage';
 import SignUp from './components/Sign_Up/SignUp';
 import Login from './components/Login/Login';
-import InstantConsultation from './components/InstantConsultationBooking/InstantConsultation';
+import InstantConsultation from './components/InstantConsultation/InstantConsultation';
 import BestServices from './components/Best_Services/BestServices';
 import RequireAuth from './components/RequireAuth';
 import AppointmentBooking from './components/AppointmentBooking/AppointmentBooking';

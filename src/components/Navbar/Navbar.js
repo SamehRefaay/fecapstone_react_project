@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState('');
-	const [openDropMenu, setOpenDropMenu] = useState(true);
+	// const [openDropMenu, setOpenDropMenu] = useState(true);
 
 	useEffect(() => {
 		const isMobile = window.innerWidth;
@@ -28,11 +28,6 @@ const Navbar = () => {
 		setIsLoggedIn(false);
 		setUserName('');
 		window.location.reload();
-	};
-
-	const handleClick = () => {
-		console.log('clicked');
-		setOpenDropMenu(!openDropMenu);
 	};
 
 	return (
@@ -61,14 +56,12 @@ const Navbar = () => {
 						</a>
 						<span>.</span>
 					</div>
-					<div className="nav__icon" onClick={handleClick}>
+					<div className="nav__icon">
 						<i className="fa fa-times fa fa-bars"></i>
 					</div>
-					<ul className={openDropMenu ? 'nav__links active' : 'hide'}>
+					<ul className={'nav__links active'}>
 						<li className="link">
-							<Link to="/best-services" onClick={() => setOpenDropMenu(false)}>
-								Home
-							</Link>
+							<Link to="/best-services">Home</Link>
 						</li>
 						<li className="link">
 							<Link to="">Appointment</Link>
