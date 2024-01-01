@@ -67,18 +67,18 @@ const DoctorCard = ({
 			removeEmptyObj(data);
 			setHasBooked(false);
 		}
-		const consultationList = JSON.parse(
-			window.localStorage.getItem('consultation-list')
-		);
+		// const consultationList = JSON.parse(
+		// 	window.localStorage.getItem('consultation-list')
+		// );
 
-		const updatedConsultationList = consultationList.filter(
-			item => item.name !== name
-		);
-		window.localStorage.setItem(
-			'consultation-list',
-			JSON.stringify(updatedConsultationList)
-		);
-		removeEmptyArray();
+		// const updatedConsultationList = consultationList.filter(
+		// 	item => item.name !== name
+		// );
+		// window.localStorage.setItem(
+		// 	'consultation-list',
+		// 	JSON.stringify(updatedConsultationList)
+		// );
+		// removeEmptyArray();
 	};
 
 	const removeEmptyArray = () => {
