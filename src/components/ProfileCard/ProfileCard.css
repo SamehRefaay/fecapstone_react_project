@@ -1,0 +1,19 @@
+.profile-page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+.profile-container {
+	border: 15px solid #eee;
+	padding: 20px;
+}
+
+.profile-details {
+	text-align: start;
+}
+.profile-details p,
+.profile-details button {
+	margin-top: 10px;
+}

@@ -85,7 +85,7 @@ const Navbar = () => {
 									{showProfileDropMenu && (
 										<ul className="profile-drop-down-menu">
 											<li>
-												<Link to={'#'}>Your Profile</Link>
+												<Link to="/profile">Your Profile</Link>
 											</li>
 										</ul>
 									)}

@@ -10,6 +10,7 @@ import RequireAuth from './components/RequireAuth';
 import AppointmentBooking from './components/AppointmentBooking/AppointmentBooking';
 import Notification from './components/Notification/Notification';
 import ReviewForm from './components/ReviewForm/ReviewForm';
+import ProfileCard from './components/ProfileCard/ProfileCard';
 
 function App() {
 	return (
@@ -39,6 +40,7 @@ function App() {
 					/>
 					<Route path="/best-services" element={<BestServices />} />
 					<Route path="/reviews" element={<ReviewForm />} />
+					<Route path="/profile" element={<ProfileCard />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
