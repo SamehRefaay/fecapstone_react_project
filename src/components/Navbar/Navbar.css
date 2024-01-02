@@ -14,6 +14,26 @@ nav .container {
 	justify-content: space-between;
 	align-items: center;
 }
+
+.profile-username {
+	position: relative;
+	cursor: pointer;
+}
+
+.profile-drop-down-menu {
+	position: absolute;
+	top: 25px;
+	left: 0;
+	width: 100%;
+	padding: 0;
+	text-align: left;
+	box-shadow: 1px 1px 5px #ccc;
+	height: 100px;
+}
+.profile-drop-down-menu li {
+	margin: 0;
+	padding: 5px;
+}
 .dropdown-menu {
 	position: absolute;
 	top: 100%;

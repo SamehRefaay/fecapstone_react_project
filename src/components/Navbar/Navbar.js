@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState('');
+	const [showProfileDropMenu, setShowProfileDropMenu] = useState(false);
 	// const [openDropMenu, setOpenDropMenu] = useState(true);
 
 	useEffect(() => {
@@ -74,9 +75,21 @@ const Navbar = () => {
 						</li>
 						{isLoggedIn ? (
 							<>
-								<p>
-									Welcome, <span>{userName}</span>
-								</p>
+								<div
+									className="profile-username"
+									onClick={() => setShowProfileDropMenu(!showProfileDropMenu)}
+								>
+									<p>
+										Welcome, <span>{userName}</span>
+									</p>
+									{showProfileDropMenu && (
+										<ul className="profile-drop-down-menu">
+											<li>
+												<Link to={'#'}>Your Profile</Link>
+											</li>
+										</ul>
+									)}
+								</div>
 								<li className="link">
 									<button onClick={handleLogout} className="btn1">
 										Logout
