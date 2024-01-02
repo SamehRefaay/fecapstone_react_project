@@ -11,6 +11,7 @@ import AppointmentBooking from './components/AppointmentBooking/AppointmentBooki
 import Notification from './components/Notification/Notification';
 import ReviewForm from './components/ReviewForm/ReviewForm';
 import ProfileCard from './components/ProfileCard/ProfileCard';
+import ReportsLayout from './components/ReportsLayout/ReportsLayout';
 
 function App() {
 	return (
@@ -41,6 +42,7 @@ function App() {
 					<Route path="/best-services" element={<BestServices />} />
 					<Route path="/reviews" element={<ReviewForm />} />
 					<Route path="/profile" element={<ProfileCard />} />
+					<Route path="/reports" element={<ReportsLayout />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

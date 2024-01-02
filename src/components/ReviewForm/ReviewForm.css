@@ -14,7 +14,7 @@ table {
 table th {
 	background-color: #eee;
 }
-th:last-child {
+.reviews .container th:last-child {
 	width: 30%;
 }
 

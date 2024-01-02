@@ -25,10 +25,9 @@ nav .container {
 	top: 25px;
 	left: 0;
 	width: 100%;
-	padding: 0;
+	padding: 5px;
 	text-align: left;
 	box-shadow: 1px 1px 5px #ccc;
-	height: 100px;
 }
 .profile-drop-down-menu li {
 	margin: 0;
