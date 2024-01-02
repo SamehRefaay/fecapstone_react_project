@@ -1,12 +1,33 @@
 import React from 'react';
 import './ReportsLayout.css';
 
-const fakeData = [
+const doctors = [
 	{ name: 'Dr. John Doe', speciality: 'Cardiology' },
 	{ name: 'Dr. Jane Smith', speciality: 'Dermatology' },
 ];
 
 const ReportsLayout = () => {
+	const REPORT_FILE_URL = 'http://localhost:3000/report.pdf';
+
+	const downloadReportFile = url => {
+		const fileName = url.split('/').pop();
+		const aTag = document.createElement('a');
+		aTag.href = url;
+		aTag.setAttribute('download', fileName);
+		document.body.appendChild(aTag);
+		aTag.click();
+		aTag.remove();
+	};
+	const reviewReportFile = url => {
+		const aTag = document.createElement('a');
+		aTag.href = url;
+		aTag.setAttribute('target', '_blank');
+		aTag.setAttribute('rel', 'noreferrer');
+		document.body.appendChild(aTag);
+		aTag.click();
+		aTag.remove();
+	};
+
 	return (
 		<div className="reports-page">
 			<div className="reports-container">
@@ -19,16 +40,28 @@ const ReportsLayout = () => {
 						<th>View Report</th>
 						<th>Download Report</th>
 					</tr>
-					{fakeData.map((doctor, i) => (
+					{doctors.map((doctor, i) => (
 						<tr>
 							<td>{i + 1}</td>
 							<td>{doctor.name}</td>
 							<td>{doctor.speciality}</td>
 							<td>
-								<button>View Report</button>
+								<button
+									onClick={() => {
+										reviewReportFile(REPORT_FILE_URL);
+									}}
+								>
+									View Report
+								</button>
 							</td>
 							<td>
-								<button>Download Report</button>
+								<button
+									onClick={() => {
+										downloadReportFile(REPORT_FILE_URL);
+									}}
+								>
+									Download Report
+								</button>
 							</td>
 						</tr>
 					))}
