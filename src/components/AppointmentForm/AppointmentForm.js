@@ -43,7 +43,7 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
 
 	const [startDate, setStartDate] = useState(new Date());
 
-	const [selectedSlot, setSelectedSlot] = useState('');
+	const [selectedSlot, setSelectedSlot] = useState('08:00 AM');
 
 	const NAME_REGEX = /^[a-zA-Z]+[a-zA-Z\s]*?[^0-9]$/;
 	const PHONE_REGEX = /\d/;
